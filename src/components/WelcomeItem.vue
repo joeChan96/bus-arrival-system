@@ -1,3 +1,6 @@
+<script>
+</script>
+
 <template>
   <div class="item">
     <i>
@@ -7,7 +10,7 @@
       <h3>
         <slot name="heading"></slot>
       </h3>
-      <slot></slot>
+      <slot name="text"></slot>
     </div>
   </div>
 </template>

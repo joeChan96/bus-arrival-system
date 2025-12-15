@@ -10,6 +10,7 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
+  base: '/bus-arrival-system/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

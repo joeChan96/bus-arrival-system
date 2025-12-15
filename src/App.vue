@@ -1,47 +1,52 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import RouteList from './components/RouteList.vue';
+import { reactive } from 'vue';
+import moment from 'moment';
+
+const state = reactive({
+  currentTime: moment().format('DD/MM/YYYY HH:mm:ss'),
+})
+
+setInterval(() => {
+  state.currentTime = moment().format('DD/MM/YYYY HH:mm:ss');
+}, 1000);
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div class="layout">
+    <div class="left-grid">
+      <img alt="3ASV" src="@/assets/3asv.jpg" width="100%" height="100%" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <div class="bg-primary d-flex flex-row justify-space-between align-center py-2 px-2" style="height: 20%;">
+        <div class="text-h4" style="color: azure;">{{ state.currentTime }}</div>
+        <v-btn text="更改巴士站/路線" @click="$refs.routeList.openDialog()" style="align-self: center;">
+        </v-btn>
+
+      </div>
     </div>
-  </header>
 
-  <main>
-    <TheWelcome />
-  </main>
+    <div class="right-grid">
+      <RouteList ref="routeList" />
+    </div>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+.layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.left-grid {
+  width: 70%;
+  /* height: 100vh; */
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.right-grid {
+  width: 30%;
 }
+
+@media (min-width: 1024px) {}
 </style>
